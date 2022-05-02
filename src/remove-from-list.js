@@ -25,29 +25,24 @@ const {
  * }
  */
 function removeKFromList(l, k) {
-    if (l == null) {
-        return l;
-    }
-    while (l.next !== null) {
-      if(l.value === k) {
-        l = l.next;
-        thisNode = l;
-        nextNode = thisNode.next;
-        while (nextNode != null) {
-            if (nextNode.value == k) {
-                thisNode.next = nextNode.next;
-                // No more nodes, ie last node was to be removed
-                if (thisNode.next == null)
-                    break;
-            }
-            thisNode = thisNode.next;
-            nextNode = thisNode.next;
+    let head = l
+    let previous = null
+  
+    while(l){
+      if(l.value === k){            
+        if(previous===null){
+            head = l = l.next
+            continue
+        } else {
+            previous.next = l.next
+            l = l.next
+            continue
         }
       }
-
+      previous = l
+      l = l.next
     }
-
-    return l;
+    return head
 }
 
 module.exports = {
